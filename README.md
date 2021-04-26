@@ -3,13 +3,13 @@
 ### Clone react app
 git clone https://github.com/Bhuang23/react-simple-web-app.git
 
-Then go to where the react app is inside your directory using
-cd react-simple-web-app
+go to the react-simple-web-app directory
+
 
 ### Install dependencies
-npm install react-bootstrap bootstrap
-npm install react-router-dom --save
-npm install axios
+##### npm install react-bootstrap bootstrap
+##### npm install react-router-dom --save
+##### npm install axios
 ## How to run project
 ### `npm start`
 
