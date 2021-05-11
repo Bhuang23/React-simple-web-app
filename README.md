@@ -6,6 +6,7 @@ I designed and developed this web app from scratch using the MERN programming st
 <br/>
 <br>
 This app allows users:
+
 <br/>
 
 * sign up as user
