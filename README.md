@@ -13,8 +13,10 @@ This app allows users:
 * login in as user
 * visit the ecommerce web app homepage
 * view all items currently in stock
-* search items of a certain category
-* checkout items and buy them
+* search items of a certain category (still in development)
+* checkout items and buy them (still in development)
+
+Some features are still in development
 
 # Getting Started with ecommerce app
 
