@@ -1,14 +1,14 @@
 # About the project
 
-Hi, I am Brian Huang and this is my ecommerce app.
-I designed and developed this web app from scratch using the MERN programming stack. 
-This app allows users:
-	sign up as user
-		∙ login in as user
-		∙ visit the ecommerce web app homepage
-		∙ view all items currently in stock
-		∙ search items of a certain category
-		∙ checkout items and buy them
+###### Hi, I am Brian Huang and this is my ecommerce app.
+###### I designed and developed this web app from scratch using the MERN programming stack. 
+###### This app allows users:
+####### sign up as user
+####### login in as user
+####### visit the ecommerce web app homepage
+####### view all items currently in stock
+####### search items of a certain category
+####### checkout items and buy them
 
 
 # Getting Started with ecommerce app
