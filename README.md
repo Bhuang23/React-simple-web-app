@@ -1,9 +1,22 @@
-# Getting Started with react app
+# About the project
+
+Hi, I am Brian Huang and this is my ecommerce app.
+I designed and developed this web app from scratch using the MERN programming stack. 
+This app allows users:
+∙ sign up as user
+∙ login in as user
+∙ visit the ecommerce web app homepage
+∙ view all items currently in stock
+∙ search items of a certain category
+∙ checkout items and buy them
+
+
+# Getting Started with ecommerce app
 
 ### Clone react app
 git clone https://github.com/Bhuang23/react-simple-web-app.git
 
-go to the react-simple-web-app directory
+go to the ecommerce-react-web-app directory
 
 
 ### Install dependencies
