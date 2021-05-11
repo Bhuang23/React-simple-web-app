@@ -1,10 +1,8 @@
 # About the project
 
+<br>
 Hi, I am Brian Huang and this is my ecommerce app.
-<br>
-<br/>
 I designed and developed this web app from scratch using the MERN programming stack. 
-<br>
 <br/>
 This app allows users:
 ** sign up as user
