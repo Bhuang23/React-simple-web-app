@@ -12,6 +12,14 @@ This app allows users:
 * search items of a certain category
 * checkout items and buy them
 
+* Fruit
+* Apple
+* Orange
+* Banana
+* Dairy
+* Milk
+* Cheese
+		
 
 # Getting Started with ecommerce app
 
