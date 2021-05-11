@@ -16,7 +16,6 @@ This app allows users:
 * search items of a certain category (still in development)
 * checkout items and buy them (still in development)
 
-Some features are still in development
 
 # Getting Started with ecommerce app
 
