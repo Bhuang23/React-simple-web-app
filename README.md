@@ -21,7 +21,7 @@ Some features are still in development
 # Getting Started with ecommerce app
 
 ### Clone react app
-git clone https://github.com/Bhuang23/react-simple-web-app.git
+git clone https://github.com/Bhuang23/ecommerce-react-web-app.git
 
 go to the ecommerce-react-web-app directory
 
