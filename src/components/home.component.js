@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 
-export default class Logincomponent extends Component {
+export default class homecomponent extends Component {
     render() {
         return(
             <div >
-                Simple React Single-Page-Application
+                Welcome to ShoppingFirst!
             </div>
         );
     }
