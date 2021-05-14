@@ -1,8 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
-import React, {Component, useEffect, useState} from "react";
+import React, {Component} from "react";
 import Home from './components/home.component';
 import Logincomponent from './components/login.component';
-import Logoutcomponent from './components/logout.component';
 import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import Createusercomponent from "./components/createuser.component";
 import ShopDetailcomponent from "./components/ShopDetail.component";
@@ -47,8 +46,8 @@ render() {
                                 {!isLoggedIn && !isLoggingIn && <Link to={'/login-component'} onClick={this.login} className="nav-link">Login</Link>}
                             </Nav>
                             <Nav>
-                                <Link to={'/createuser-component'} className="nav-link">
-                                    Sign up</Link>
+                                {!isLoggedIn && !isLoggingIn && <Link to={'/createuser-component'} className="nav-link">
+                                    Sign up</Link>}
                             </Nav>
                             <Nav>
                                 {isLoggedIn && !isLoggingIn && <Link to={'/'} onClick={this.logout} className="nav-link">Logout</Link>}

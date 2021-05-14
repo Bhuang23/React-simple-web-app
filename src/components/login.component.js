@@ -12,7 +12,6 @@ export default class Logincomponent extends Component {
         this.onChangepassword = this.onChangepassword.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         // Setting up state
-        console.log(this.props.props)
         this.state = {
             username: '',
             password: '',
@@ -29,7 +28,7 @@ export default class Logincomponent extends Component {
     onChangeusername(e) {
         this.setState({errormessage: ''});
         var err = ''
-        if(e.target.value=='')
+        if(e.target.value==='')
         {
             err = 'Username is required'
             this.setState({usernameerrormessage: err});
@@ -45,7 +44,7 @@ export default class Logincomponent extends Component {
     onChangepassword(e) {
         this.setState({errormessage: ''});
         var err = ''
-        if(e.target.value=='')
+        if(e.target.value==='')
         {
             err = 'Password is required'
             this.setState({passworderrormessage: err})
@@ -58,9 +57,7 @@ export default class Logincomponent extends Component {
         }
     }
 
-
     onSubmit(e) {
-        var err = ''
         e.preventDefault()
         this.userdata = {
             username: this.state.username,
@@ -75,19 +72,14 @@ export default class Logincomponent extends Component {
     }
     error()
     {
-        if (this.state.errormessage == "Successfully authenticated user") {
+        if (this.state.errormessage === "Successfully authenticated user") {
             // store the user in localStorage
             let user = {
                 isLoggedIn: true
             }
             localStorage.setItem('loggedin', user.isLoggedIn)
             localStorage.setItem('username', this.userdata.username)
-            return (<span style={{color: 'green'}}>{this.state.errormessage}</span>),
-                (<Redirect to={{
-                    pathname: '/ShopDetail',
-                    state: this.state
-                }}
-                />);
+            return (<Redirect to={{pathname: '/ShopDetail', state: this.state}}/>);
 
         }
         else{

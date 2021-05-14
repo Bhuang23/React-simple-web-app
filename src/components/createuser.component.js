@@ -28,7 +28,7 @@ export default class Createusercomponent extends Component {
     onChangeusername(e) {
         this.setState({errormessage: ''});
         var err = ''
-        if(e.target.value=='')
+        if(e.target.value==='')
         {
             err = 'Username is required'
             this.setState({usernameerrormessage: err});
@@ -44,7 +44,7 @@ export default class Createusercomponent extends Component {
     onChangepassword(e) {
         this.setState({errormessage: ''});
         var err = ''
-        if(e.target.value=='')
+        if(e.target.value==='')
         {
             err = 'Password is required'
             this.setState({passworderrormessage: err});
@@ -60,7 +60,7 @@ export default class Createusercomponent extends Component {
     onChangeemail(e) {
         this.setState({errormessage: ''});
         var err = ''
-        if(e.target.value=='')
+        if(e.target.value==='')
         {
             err = 'Email is required'
             this.setState({emailerrormessage: err});
@@ -89,7 +89,7 @@ export default class Createusercomponent extends Component {
     }
     error()
     {
-        if (this.state.errormessage == "Successfully registered user") {
+        if (this.state.errormessage === "Successfully registered user") {
             return (<span style={{color: 'green'}}>{this.state.errormessage}</span>);
         }
         else{

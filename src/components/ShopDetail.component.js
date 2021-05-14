@@ -1,15 +1,23 @@
-import React, {Component} from "react";
+import React, {useEffect, useState} from "react";
 import Navbar from "react-bootstrap/Navbar";
-import styled from 'styled-components'
 import { useTable, useRowSelect } from 'react-table'
-
+import services from "../services/services";
+import styled from "styled-components";
+import { Dropdown } from 'react-dropdown-now';
+import 'react-dropdown-now/style.css';
 const Styles = styled.div`
-  padding: 1rem;
-
+  padding: 2rem;
+  dropdown{
+    display: inline;
+    width: 35%;
+  }
   table {
-    border-spacing: 0;
+    border-spacing: 1;
     border: 1px solid black;
-
+    justifyContent:center;
+    margin: 30px;
+    margin-Top: 50px;
+    width:85%;
     tr {
       :last-child {
         td {
@@ -20,7 +28,7 @@ const Styles = styled.div`
 
     th,
     td {
-      margin: 0;
+      margin: 5;
       padding: 0.5rem;
       border-bottom: 1px solid black;
       border-right: 1px solid black;
@@ -31,7 +39,6 @@ const Styles = styled.div`
     }
   }
 `
-
 const IndeterminateCheckbox = React.forwardRef(
     ({ indeterminate, ...rest }, ref) => {
         const defaultRef = React.useRef()
@@ -48,8 +55,7 @@ const IndeterminateCheckbox = React.forwardRef(
         )
     }
 )
-
-function Table({ columns, data }) {
+function Table({ columns, data,  setSelectedRows}) {
     // Use the state and functions returned from useTable to build your UI
     const {
         getTableProps,
@@ -58,7 +64,6 @@ function Table({ columns, data }) {
         rows,
         prepareRow,
         selectedFlatRows,
-        state: { selectedRowIds },
     } = useTable(
         {
             columns,
@@ -90,6 +95,10 @@ function Table({ columns, data }) {
         }
     )
 
+    useEffect(() => {
+        const selected = selectedFlatRows.map(d => d.original);
+        setSelectedRows(selected);
+    }, [selectedFlatRows, setSelectedRows]);
     // Render the UI for your table
     return (
         <>
@@ -117,18 +126,6 @@ function Table({ columns, data }) {
                 </tbody>
             </table>
             <pre>
-        <code>
-          {JSON.stringify(
-              {
-                  selectedRow: selectedRowIds,
-                  'selected row data': selectedFlatRows.map(
-                      d => d.original
-                  ),
-              },
-              null,
-              2
-          )}
-        </code>
       </pre>
         </>
     )
@@ -158,40 +155,75 @@ function ShopDetail() {
         ],
         []
     )
-
-    const data = React.useMemo(() => [
-        {
-            item_id: 5,
-            item_name: 'toothbrush',
-            item_price: 28,
-            item_category: 'dental'
-        },
-        {
-            item_id: 29,
-            item_name: 'shotgun',
-            item_price: 500,
-            item_category: 'Firearms'
-        },
-        {
-            item_id: 17,
-            item_name: 'Pizza',
-            item_price: .5,
-            item_category: 'Foods'
-        },
-        {
-            item_id: 89,
-            item_name: 'Laptop',
-            item_price: 800,
-            item_category: 'Computers'
+    const [loadingData, setLoadingData] = useState(true);
+    let [name, setNameValue] = useState("");
+    let [category, setCategoryValue] = useState("");
+    let [data, setData] = useState([]);
+    const [selectedRows, setSelectedRows] = React.useState({});
+    const handleSelect = (value) => {
+        setCategoryValue(value.value)
+        category = value.value;
+        console.log(category)
+        getData()
+    };
+    const handleChange = (e) => {
+        console.log(e.target.value);
+        setNameValue(e.target.value);
+        name = e.target.value;
+        getData()
+    }
+    async function getData() {
+        if (category !== "" && name !== "") {
+            let response = await services.getCategoryName({item_category: category, item_name: name})
+            setData(response)
+            setLoadingData(false);
+        } else if (category !== "" && name === "") {
+            let response = await services.getcategory({item_category: category})
+            setData(response)
+            setLoadingData(false);
+        } else if (category === "" && name !== "") {
+            let response = await services.getname({item_name: name})
+            setData(response)
+            setLoadingData(false);
+        } else {
+            let response = await services.getallitems()
+            setData(response)
+            setLoadingData(false);
         }
-    ], [])
+    }
+    useEffect(() => {
+        if (loadingData) {
+            // if the result is not ready so you make the axios call
+            getData();
+        }
+        let obj = JSON.parse(JSON.stringify(selectedRows,null,2))[0]
+        if(obj!= undefined)
+        {
+            console.log((obj._id))
+            console.log((obj.item_name))
+        }
+    }, [selectedRows]);
 
     return (
         <Styles>
-            <Navbar bg="light" variant="light" >
-            <Navbar.Brand href='/shopDetail'> Welcome to ShopFirst Shopping Mart, {username}!</Navbar.Brand>
-            </Navbar>
-            <Table columns={columns} data={data} />
+            <div>
+                <Navbar bg="light" variant="light">
+                    <Navbar.Brand href='/ShopDetail'> Welcome to ShopFirst Shopping Mart, {username}!</Navbar.Brand>
+                </Navbar>
+                <div style={{display: 'flex', justifyContent: 'left', margin: "20px", marginTop: "20px"}}>
+                    <Dropdown style={{width: "45%", float:"left"}}
+                        placeholder="Select an category"
+                        options={['dental', 'firearms', 'foods', "computers"]}
+                        onChange={handleSelect}
+                        onSelect={handleSelect} // always fires once a selection happens even if there is no change
+                        onClose={(closedBySelection) => console.log('closedBySelection?:', closedBySelection)}
+                        onOpen={() => console.log('open!')}
+                    />
+                    <input style={{width: "20%", float:"left",marginLeft:"10px", marginRight:"650px"}}type="text" name="Search item by name" onChange={handleChange} value={name}/>
+                    <button style={{width: "12%", float:"left"}} onClick={()=>alert(JSON.stringify(selectedRows,null,2))}>Check out item</button>
+                </div>
+                <Table columns={columns} data={data} setSelectedRows={setSelectedRows}/>
+            </div>
         </Styles>
     )
 }
