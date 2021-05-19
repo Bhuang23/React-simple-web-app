@@ -93,32 +93,32 @@ export default class Createusercomponent extends Component {
             return (<span style={{color: 'green'}}>{this.state.errormessage}</span>);
         }
         else{
-            return (<span style={{color:'red'}}>{this.state.errormessage}</span>);
+            return (<span className="span">{this.state.errormessage}</span>);
         }
     }
     render() {
         return (
-            <div className="col-md-13 col-md-offset-2" style={{justifyContent: 'center'}} >
+            <div className="div">
                 <Form onSubmit={this.onSubmit} className="formWidth">
                     <Form.Group controlId="Username" >
                         <Form.Label style={{display: 'flex', justifyContent: 'center'}}>Username</Form.Label>
                         <Form.Control type="text" value={this.state.username} onChange={this.onChangeusername}/>
                         {this.state.usernameerrormessage.length > 0 &&
-                        <span style={{color:'red'}}>{this.state.usernameerrormessage}</span>}
+                        <span className="span">{this.state.usernameerrormessage}</span>}
                     </Form.Group>
 
                     <Form.Group controlId="Email">
                         <Form.Label style={{display: 'flex', justifyContent: 'center'}}>Email</Form.Label>
                         <Form.Control type="text" value={this.state.email} onChange={this.onChangeemail}/>
                         {this.state.emailerrormessage.length > 0 &&
-                        <span style={{color:'red'}}>{this.state.emailerrormessage}</span>}
+                        <span className="span">{this.state.emailerrormessage}</span>}
                     </Form.Group>
 
                     <Form.Group controlId="Password">
                         <Form.Label style={{display: 'flex', justifyContent: 'center'}}>Password</Form.Label>
                         <Form.Control type="text" value={this.state.password} onChange={this.onChangepassword}/>
                         {this.state.passworderrormessage.length > 0 &&
-                        <span style={{color:'red'}}>{this.state.passworderrormessage}</span>}
+                        <span className="span">{this.state.passworderrormessage}</span>}
                     </Form.Group>
 
                     <Button variant="danger" size="lg" block="block" type="submit">

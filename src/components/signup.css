@@ -1,0 +1,15 @@
+.div
+{
+    position: absolute;
+    width: 350px;
+    height: 100px;
+    padding: 40px;
+    top: 30%;
+    left: 50%;
+
+    margin: -70px 0 0 -170px;
+}
+.span
+{
+    color: red
+}
