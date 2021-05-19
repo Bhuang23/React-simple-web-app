@@ -197,7 +197,7 @@ function ShopDetail() {
             getData();
         }
         let obj = JSON.parse(JSON.stringify(selectedRows,null,2))[0]
-        if(obj!= undefined)
+        if(obj!== undefined)
         {
             console.log((obj._id))
             console.log((obj.item_name))
