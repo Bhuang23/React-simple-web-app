@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import services from '../services/services'
 import {Redirect} from "react-router-dom";
+import "./login.css"
 export default class Logincomponent extends Component {
     constructor(props) {
         super(props)
@@ -23,8 +24,9 @@ export default class Logincomponent extends Component {
             username: '',
             password: ''
         };
+        localStorage.setItem('loggedIn', "false")
+        localStorage.setItem('isloggingIn', "true")
     }
-
     onChangeusername(e) {
         this.setState({errormessage: ''});
         var err = ''
@@ -56,7 +58,6 @@ export default class Logincomponent extends Component {
             this.setState({password: e.target.value})
         }
     }
-
     onSubmit(e) {
         e.preventDefault()
         this.userdata = {
@@ -74,33 +75,31 @@ export default class Logincomponent extends Component {
     {
         if (this.state.errormessage === "Successfully authenticated user") {
             // store the user in localStorage
-            let user = {
-                isLoggedIn: true
-            }
-            localStorage.setItem('loggedin', user.isLoggedIn)
+            localStorage.setItem('loggedIn', "true")
+            localStorage.setItem('isloggingIn', "false")
             localStorage.setItem('username', this.userdata.username)
-            return (<Redirect to={{pathname: '/ShopDetail', state: this.state}}/>);
+            return (<Redirect to={{pathname: '/Auth', state: this.state}}/>);
 
         }
         else{
-            return (<span style={{color:'red'}}>{this.state.errormessage}</span>);
+            return (<span className="span">{this.state.errormessage}</span>);
         }
     }
     render() {
                 return (
-                    <div className="col-md-13 col-md-offset-2" style={{justifyContent: 'center'}}>
+                    <div className="div">
                         <Form onSubmit={this.onSubmit} className="formWidth">
-                            <Form.Group controlId="Username">
+                            <Form.Group className="group" controlId="Username">
                                 <Form.Label style={{display: 'flex', justifyContent: 'center'}}>Username</Form.Label>
                                 <Form.Control type="text" value={this.state.username} onChange={this.onChangeusername}/>
                                 {this.state.usernameerrormessage.length > 0 &&
-                                <span style={{color: 'red'}}>{this.state.usernameerrormessage}</span>}
+                                <span className="span">{this.state.usernameerrormessage}</span>}
                             </Form.Group>
-                            <Form.Group controlId="Password">
+                            <Form.Group className="group" controlId="Password">
                                 <Form.Label style={{display: 'flex', justifyContent: 'center'}}>Password</Form.Label>
                                 <Form.Control type="text" value={this.state.password} onChange={this.onChangepassword}/>
                                 {this.state.passworderrormessage.length > 0 &&
-                                <span style={{color: 'red'}}>{this.state.passworderrormessage}</span>}
+                                <span className="span">{this.state.passworderrormessage}</span>}
                             </Form.Group>
                             <Button variant="danger" size="lg" block="block" type="submit"> Login </Button>
                         </Form>
