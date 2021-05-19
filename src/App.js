@@ -5,52 +5,51 @@ import Logincomponent from './components/login.component';
 import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import Createusercomponent from "./components/createuser.component";
 import ShopDetailcomponent from "./components/ShopDetail.component";
-
+import authcomponent from "./components/auth.component";
+import "./App.css";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 export default class App extends Component{
     constructor(props) {
         super(props);
-        if(Boolean(localStorage.getItem('loggedin')))
-        {
-            console.log(localStorage.getItem('loggedin'))
-            this.state = {isLoggingIn: false, isLoggedIn: localStorage.getItem('loggedin') };
-        }
-        else
-        {
-            this.state = {isLoggingIn: false, isLoggedIn: false };
-        }
-
+        this.state = {isLoggingIn: localStorage.getItem('isloggingIn'), isLoggedIn: localStorage.getItem('loggedIn') };
         console.log(this.state)
+    }
+    componentDidMount() {
+        this.setState({isLoggingIn: localStorage.getItem('isloggingIn'), isLoggedIn: localStorage.getItem('loggedIn') });
     }
 
     login = () => {
-        this.setState({isLoggingIn:true, isLoggedIn : false});
+        localStorage.setItem("loggedIn", "false");
+        localStorage.setItem("isloggingIn", "true");
+        this.setState({isLoggingIn: localStorage.getItem('isloggingIn'), isLoggedIn: localStorage.getItem('loggedIn') });
         console.log(this.state)
 
     }
 
     logout = () => {
-        this.setState({ isLoggingIn:false, isLoggedIn: false });
+        localStorage.setItem("loggedIn", "false");
+        localStorage.setItem("isloggingIn", "false");
+        this.setState({isLoggingIn: localStorage.getItem('isloggingIn'), isLoggedIn: localStorage.getItem('loggedIn') });
         console.log(this.state)
     }
 
 render() {
         const {isLoggingIn, isLoggedIn} = this.state;
         return (<Router>
-                <div className="app">
-                    <Navbar bg="light" variant="light">
+                <div>
+                    <Navbar className="app" variant="dark">
                         <Navbar.Brand href='/'> ShopFirst Ecommerce App </Navbar.Brand>
                         <Nav className="ml-auto">
                             <Nav>
-                                {!isLoggedIn && !isLoggingIn && <Link to={'/login-component'} onClick={this.login} className="nav-link">Login</Link>}
+                                {isLoggedIn==="false" && isLoggingIn==="false" && <Link to={'/login-component'} onClick={this.login} className="nav-link">Login</Link>}
                             </Nav>
                             <Nav>
-                                {!isLoggedIn && !isLoggingIn && <Link to={'/createuser-component'} className="nav-link">
+                                {isLoggedIn==="false" && isLoggingIn==="false" && <Link to={'/createuser-component'} className="nav-link">
                                     Sign up</Link>}
                             </Nav>
                             <Nav>
-                                {isLoggedIn && !isLoggingIn && <Link to={'/'} onClick={this.logout} className="nav-link">Logout</Link>}
+                                {isLoggedIn==="true" && isLoggingIn==="false" && <Link to={'/'} onClick={this.logout} className="nav-link">Logout</Link>}
                             </Nav>
                         </Nav>
                     </Navbar>
@@ -60,6 +59,7 @@ render() {
                         <Route path="/login-component" component={Logincomponent}/>
                         <Route path="/createuser-component" component={Createusercomponent}/>
                         <Route path="/ShopDetail" component={ShopDetailcomponent}/>
+                        <Route path="/Auth" component={authcomponent}/>
                     </Switch>
                 </div>
             </Router>
