@@ -9,16 +9,23 @@ import authcomponent from "./components/auth.component";
 import "./App.css";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-export default class App extends Component{
+export default class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {isLoggingIn: localStorage.getItem('isloggingIn'), isLoggedIn: localStorage.getItem('loggedIn') };
+        this.state = {isLoggingIn: localStorage.getItem('isloggingIn'), isLoggedIn: localStorage.getItem('loggedIn')};
+        this.loginhandler = this.loginhandler.bind(this);
         console.log(this.state)
     }
-    componentDidMount() {
-        this.setState({isLoggingIn: localStorage.getItem('isloggingIn'), isLoggedIn: localStorage.getItem('loggedIn') });
-    }
 
+    componentDidMount() {
+        this.setState({isLoggingIn: localStorage.getItem('isloggingIn'), isLoggedIn: localStorage.getItem('loggedIn')});
+    }
+    loginhandler()
+    {
+        localStorage.setItem("loggedIn", "true");
+        localStorage.setItem("isloggingIn", "false");
+        this.setState({isLoggingIn: "false", isLoggedIn: "true"});
+    }
     login = () => {
         localStorage.setItem("loggedIn", "false");
         localStorage.setItem("isloggingIn", "true");
@@ -26,7 +33,6 @@ export default class App extends Component{
         console.log(this.state)
 
     }
-
     logout = () => {
         localStorage.setItem("loggedIn", "false");
         localStorage.setItem("isloggingIn", "false");
@@ -56,7 +62,7 @@ render() {
                     <hr/>
                     <Switch>
                         <Route exact path="/" component={Home}/>
-                        <Route path="/login-component" component={Logincomponent}/>
+                        <Route path="/login-component" render={props => <Logincomponent loginhandler={this.loginhandler}/>}/>
                         <Route path="/createuser-component" component={Createusercomponent}/>
                         <Route path="/ShopDetail" component={ShopDetailcomponent}/>
                         <Route path="/Auth" component={authcomponent}/>

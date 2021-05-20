@@ -208,7 +208,7 @@ function ShopDetail() {
         <Styles>
             <div>
                 <Navbar bg="light" variant="light">
-                    <Navbar.Brand href='/ShopDetail'> Welcome to ShopFirst Shopping Mart, {username}!</Navbar.Brand>
+                    <Navbar.Brand > Welcome to ShopFirst Shopping Mart, {username}!</Navbar.Brand>
                 </Navbar>
                 <div style={{display: 'flex', justifyContent: 'left', margin: "20px", marginTop: "20px"}}>
                     <Dropdown style={{width: "45%", float:"left"}}
