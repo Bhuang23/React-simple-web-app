@@ -5,7 +5,6 @@ import Logincomponent from './components/login.component';
 import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import Createusercomponent from "./components/createuser.component";
 import ShopDetailcomponent from "./components/ShopDetail.component";
-import authcomponent from "./components/auth.component";
 import "./App.css";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -65,7 +64,6 @@ render() {
                         <Route path="/login-component" render={props => <Logincomponent loginhandler={this.loginhandler}/>}/>
                         <Route path="/createuser-component" component={Createusercomponent}/>
                         <Route path="/ShopDetail" component={ShopDetailcomponent}/>
-                        <Route path="/Auth" component={authcomponent}/>
                     </Switch>
                 </div>
             </Router>
