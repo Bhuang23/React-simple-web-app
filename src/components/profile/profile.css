@@ -1,0 +1,34 @@
+.div
+{
+    position: absolute;
+    width: 400px;
+    height: 100px;
+    padding: 20px;
+    top: 17%;
+    left: 50%;
+
+    margin: -70px 0 0 -170px;
+}
+.span
+{
+    color: red
+}.div:hover .profile {
+     background-color: orange;
+     color: black;
+ }
+.profile
+{
+    width: 360px;
+    height: 35px;
+    font-size: 17px;
+    border-radius: 35px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    display:flex;
+    justify-content: center;
+    -webkit-transition: background-color .3s ease;
+    transition: background-color .3s ease;
+    overflow: hidden;
+}

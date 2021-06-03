@@ -16,6 +16,30 @@ export default class services {
             return "error"
         }
     }
+    static async getuser(userdata) {
+        try {
+            let response = await axios.post('http://localhost:4000/users/getuser', userdata)
+                .catch((error) => {
+                    return error.message
+                })
+            console.log(response.data.data)
+            return response.data.data
+        } catch (e){
+            return "Couldn't get user"
+        }
+    }
+    static async updateuser(userdata) {
+        try {
+            let response = await axios.post('http://localhost:4000/users/updateuser', userdata)
+                .catch((error) => {
+                    return error.message
+                })
+            console.log(response.data.data)
+            return response.data.data
+        } catch (e){
+            return "Couldn't get user"
+        }
+    }
     static async createuser(userdata) {
         try {
             let response = await axios.post('http://localhost:4000/users/newuser', userdata)
@@ -53,6 +77,42 @@ export default class services {
             return response.data.data
         } catch (e) {
             return "unable to retrieve items"
+        }
+    }
+    static async getitem(item_id) {
+        try {
+            let response = await axios.post('http://localhost:4000/shop/getId', item_id)
+                .catch((error) => {
+                    return error.message
+                })
+            console.log(response.data.data)
+            return response.data.data
+        } catch (e) {
+            return "unable to retrieve item"
+        }
+    }
+    static async addtocart(item) {
+        try {
+            let response = await axios.post('http://localhost:4000/users/addtocart', item)
+                .catch((error) => {
+                    return error.message
+                })
+            console.log(response.data.data)
+            return response.data.data
+        } catch (e) {
+            return "unable to add item to cart"
+        }
+    }
+    static async removefromcart(item) {
+        try {
+            let response = await axios.post('http://localhost:4000/users/removefromcart', item)
+                .catch((error) => {
+                    return error.message
+                })
+            console.log(response.data.data)
+            return response.data.data
+        } catch (e) {
+            return "unable to remove item from cart"
         }
     }
     static async getcategory(category) {
