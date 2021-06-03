@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button';
-import services from '../services/services'
+import services from '../../services/services'
 import {Redirect} from "react-router-dom";
 import "./login.css"
+import Button from "react-bootstrap/Button";
 export default class Logincomponent extends Component {
     constructor(props) {
         super(props)
@@ -64,7 +64,7 @@ export default class Logincomponent extends Component {
             // store the user in localStorage
             localStorage.setItem('username', this.userdata.username)
             this.props.loginhandler();
-            return (<Redirect from="/login-component" to={{pathname: '/ShopDetail', state: this.state}}/>);
+            return (<Redirect from="/login-component" to={{pathname: '/shopdetail-component', state: this.state}}/>);
 
         }
         else{
@@ -87,7 +87,7 @@ export default class Logincomponent extends Component {
                         {this.state.passworderrormessage.length > 0 &&
                         <span className="span">{this.state.passworderrormessage}</span>}
                     </Form.Group>
-                    <Button variant="danger" size="lg" block="block" type="submit"> Login </Button>
+                    <button className="login" variant="danger" size="lg" block="block" type="submit"> Login </button>
                 </Form>
                 {this.error()}
 

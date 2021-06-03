@@ -1,0 +1,36 @@
+
+.div
+{
+    position: absolute;
+    width: 350px;
+    height: 100px;
+    padding: 40px;
+    top: 30%;
+    left: 50%;
+
+    margin: -70px 0 0 -170px;
+}
+.span
+{
+    color: red
+}
+.login:hover {
+    background-color: orange;
+    color: black;
+}
+.login
+{
+    width: 360px;
+    height: 35px;
+    font-size: 17px;
+    border-radius: 35px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    display:flex;
+    justify-content: center;
+    -webkit-transition: background-color .3s ease;
+    transition: background-color .3s ease;
+    overflow: hidden;
+}

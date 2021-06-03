@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import services from '../services/services';
-import {Dropdown} from "react-dropdown-now";
+import services from '../../services/services';
 import Select from "react-select";
 import "./signup.css"
 export default class Createusercomponent extends Component {
@@ -44,7 +43,7 @@ export default class Createusercomponent extends Component {
 
     onChangeusername(e) {
         this.setState({errormessage: ''});
-        var err = ''
+        let err = '';
         if(e.target.value==='')
         {
             err = 'Username is required'
@@ -60,7 +59,7 @@ export default class Createusercomponent extends Component {
 
     onChangepassword(e) {
         this.setState({errormessage: ''});
-        var err = ''
+        let err = '';
         if(e.target.value==='')
         {
             err = 'Password is required'
@@ -76,7 +75,7 @@ export default class Createusercomponent extends Component {
 
     onChangeemail(e) {
         this.setState({errormessage: ''});
-        var err = ''
+        let err = '';
         if(e.target.value==='')
         {
             err = 'Email is required'
@@ -91,7 +90,7 @@ export default class Createusercomponent extends Component {
     }
     onChangephone(e) {
         this.setState({errormessage: ''});
-        var err = ''
+        let err = '';
         if(e.target.value==='')
         {
             err = 'Phone is required'
@@ -106,7 +105,7 @@ export default class Createusercomponent extends Component {
     }
     onChangeaddress(e) {
         this.setState({errormessage: ''});
-        var err = ''
+        let err = '';
         if(e.target.value==='')
         {
             err = 'Address is required'
@@ -128,7 +127,7 @@ export default class Createusercomponent extends Component {
     };
     onChangezipcode(e) {
         this.setState({errormessage: ''});
-        var err = ''
+        let err = '';
         if(e.target.value==='')
         {
             err = 'Zipcode is required'
@@ -274,9 +273,9 @@ export default class Createusercomponent extends Component {
                         {this.state.zipcodeerrormessage.length > 0 &&
                         <span className="span">{this.state.zipcodeerrormessage}</span>}
                     </Form.Group>
-                    <Button variant="danger" size="lg" block="block" type="submit">
+                    <button className="signup" variant="danger" size="lg" block="block" type="submit">
                         Register
-                    </Button>
+                    </button>
                     {this.error()}
                 </Form>
             </div>
