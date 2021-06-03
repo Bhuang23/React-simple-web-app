@@ -1,10 +1,11 @@
 import "bootstrap/dist/css/bootstrap.css";
 import React, {Component} from "react";
 import Home from './components/home.component';
-import Logincomponent from './components/login.component';
+import Logincomponent from './components/login/login.component';
 import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
-import Createusercomponent from "./components/createuser.component";
-import ShopDetailcomponent from "./components/ShopDetail.component";
+import Createusercomponent from "./components/signup/createuser.component";
+import ShopDetailcomponent from "./components/ShopDetail/ShopDetail.component";
+import Profilecomponent from "./components/profile/profile.component";
 import "./App.css";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -54,6 +55,12 @@ render() {
                                     Sign up</Link>}
                             </Nav>
                             <Nav>
+                                {isLoggedIn==="true" && isLoggingIn==="false" && <Link to={'/shopdetail-component'} className="nav-link">Shop</Link>}
+                            </Nav>
+                            <Nav>
+                                {isLoggedIn==="true" && isLoggingIn==="false" && <Link to={'/profile-component'} className="nav-link">Profile</Link>}
+                            </Nav>
+                            <Nav>
                                 {isLoggedIn==="true" && isLoggingIn==="false" && <Link to={'/'} onClick={this.logout} className="nav-link">Logout</Link>}
                             </Nav>
                         </Nav>
@@ -63,7 +70,8 @@ render() {
                         <Route exact path="/" component={Home}/>
                         <Route path="/login-component" render={props => <Logincomponent loginhandler={this.loginhandler}/>}/>
                         <Route path="/createuser-component" component={Createusercomponent}/>
-                        <Route path="/ShopDetail" component={ShopDetailcomponent}/>
+                        <Route path="/shopdetail-component" component={ShopDetailcomponent}/>
+                        <Route path="/profile-component" component={Profilecomponent}/>
                     </Switch>
                 </div>
             </Router>
