@@ -11,9 +11,11 @@ This app allows users:
 
 * sign up as user
 * login in as user
+* update user information
 * visit the ecommerce web app homepage
 * view all items currently in stock
-* search items of a certain category 
+* search items of a certain category or name
+* add items to shopping cart
 * checkout items and buy them (still in development)
 
 
