@@ -16,7 +16,7 @@ This app allows users:
 * view all items currently in stock
 * search items of a certain category or name
 * add items to shopping cart
-* checkout items and buy them (still in development)
+* checkout items and buy them using Stripe payment service
 
 
 # Getting Started with ecommerce app
@@ -31,6 +31,9 @@ go to the ecommerce-react-web-app directory
 ##### npm install react-bootstrap bootstrap
 ##### npm install react-router-dom --save
 ##### npm install axios
+##### npm install --save @stripe/react-stripe-js @stripe/stripe-js
+##### npm install @material-ui/core
+##### npm install @material-ui/icons
 ## How to run project
 ### `npm start`
 
