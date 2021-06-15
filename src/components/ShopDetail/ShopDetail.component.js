@@ -11,7 +11,6 @@ const ShopDetail = () => {
     const [loadingData, setLoadingData] = useState(true);
     let [name, setNameValue] = useState("");
     let [category, setCategoryValue] = useState("");
-    let items = []
     let [data, setData] = useState([]);
     const handleSelect = (value) => {
         setCategoryValue(value.value)
@@ -31,13 +30,11 @@ const ShopDetail = () => {
     }
 
     async function addItem(item_id) {
-        const count = items.filter(item => item==item_id).length;
         await services.getitem({item_id: item_id}).then(async (response) => {
             await services.addtocart({username: username, response: response})
         }, (error) => {
             console.log(error);
         });
-        items.push(item_id);
     }
     async function getData() {
         if (category !== "" && name !== "") {
@@ -73,7 +70,8 @@ const ShopDetail = () => {
             <div className="card_header">
                 <h2>{item.item_name}</h2>
                 <p>{item.item_description}</p>
-                <p className="price">{item.item_price}{item.item_currency}</p>
+                <p>In Stock: {item.quantity}</p>
+                <p className="price">Item Price: {item.item_price}{item.item_currency}</p>
                 <div><Button value={item.item_id} onClick={onClick}>Add to cart</Button></div>
             </div>
         </div>
@@ -93,8 +91,7 @@ const ShopDetail = () => {
                           onClose={(closedBySelection) => console.log('closedBySelection?:', closedBySelection)}
                           onOpen={() => console.log('open!')}
                 />
-                <input style={{width: "15%", float:"center",marginLeft:"50px", marginRight:"650px"}}type="text" name="Search item by name" onChange={handleChange} value={name}/>
-                <button style={{width: "12%", float:"center", marginRight:"0px"}}>Check out</button>
+                <input style={{width: "15%", float:"center",marginLeft:"4%", marginRight:"30%"}}type="text" placeholder="Search item by name" onChange={handleChange} value={name}/>
             </div>
             <div className="shop_detail">
                 {listItems}
