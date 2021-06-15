@@ -5,6 +5,7 @@ import Logincomponent from './components/login/login.component';
 import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import Createusercomponent from "./components/signup/createuser.component";
 import ShopDetailcomponent from "./components/ShopDetail/ShopDetail.component";
+import ShoppingCartcomponent from "./components/ShoppingCart/ShoppingCart.component";
 import Profilecomponent from "./components/profile/profile.component";
 import "./App.css";
 import Nav from "react-bootstrap/Nav";
@@ -58,6 +59,9 @@ render() {
                                 {isLoggedIn==="true" && isLoggingIn==="false" && <Link to={'/shopdetail-component'} className="nav-link">Shop</Link>}
                             </Nav>
                             <Nav>
+                                {isLoggedIn==="true" && isLoggingIn==="false" && <Link to={'/shoppingcart-component'} className="nav-link">Shopping Cart</Link>}
+                            </Nav>
+                            <Nav>
                                 {isLoggedIn==="true" && isLoggingIn==="false" && <Link to={'/profile-component'} className="nav-link">Profile</Link>}
                             </Nav>
                             <Nav>
@@ -71,6 +75,7 @@ render() {
                         <Route path="/login-component" render={props => <Logincomponent loginhandler={this.loginhandler}/>}/>
                         <Route path="/createuser-component" component={Createusercomponent}/>
                         <Route path="/shopdetail-component" component={ShopDetailcomponent}/>
+                        <Route path="/shoppingcart-component" component={ShoppingCartcomponent}/>
                         <Route path="/profile-component" component={Profilecomponent}/>
                     </Switch>
                 </div>

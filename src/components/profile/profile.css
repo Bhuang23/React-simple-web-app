@@ -12,7 +12,8 @@
 .span
 {
     color: red
-}.div:hover .profile {
+}
+.profile:hover {
      background-color: orange;
      color: black;
  }
