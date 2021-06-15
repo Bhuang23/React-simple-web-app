@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form'
 import services from '../../services/services'
 import {Redirect} from "react-router-dom";
 import "./login.css"
-import Button from "react-bootstrap/Button";
+
 export default class Logincomponent extends Component {
     constructor(props) {
         super(props)
