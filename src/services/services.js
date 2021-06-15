@@ -40,6 +40,18 @@ export default class services {
             return "Couldn't get user"
         }
     }
+    static async getallorders(userdata) {
+        try {
+            let response = await axios.post('http://localhost:4000/users/getallorders', userdata)
+                .catch((error) => {
+                    return error.message
+                })
+            console.log(response.data.data)
+            return response.data.data
+        } catch (e){
+            return "Couldn't get user"
+        }
+    }
     static async createuser(userdata) {
         try {
             let response = await axios.post('http://localhost:4000/users/newuser', userdata)
@@ -149,6 +161,26 @@ export default class services {
             return response.data.data
         } catch (e) {
             return "unable to retrieve items"
+        }
+    }
+
+    static async createPayment(data, handleResponse) {
+        try {
+            const {username, amount, result} = data;
+            if(result.error) {
+                handleResponse(result);
+            }
+            else {
+                let response = await axios.post('http://localhost:4000/users/createPayment', data)
+                        .catch((error) => {
+                            handleResponse(error.message)
+                            return error.message})
+                console.log(response.data.data)
+                handleResponse(response.data.data)
+                return response.data.data
+            }
+        } catch (e) {
+            return "unable to create Payment"
         }
     }
 }
