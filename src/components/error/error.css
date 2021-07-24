@@ -1,0 +1,62 @@
+.errormain {
+    text-align: center;
+    justify-content: center;
+    display:flex;
+    align-items: center;
+    vertical-align: middle;
+    margin-top: 2%;
+    height: 80%;
+    width: 100%;
+}
+.errortext
+{
+    color: gold;
+    font-size: xx-large;
+    font-family: "Arial Black", sans-serif;
+}
+.container
+{
+    justify-content: center;
+    display:flex;
+    align-items: center;
+    margin: 20px;
+}
+.gotohome
+{
+    width: 350px;
+    height: 35px;
+    font-size: 20px;
+    border-radius: 35px;
+    background-color: royalblue;
+    color: navajowhite;
+    cursor: pointer;
+    margin-top: 20%;
+    margin-right: 10%;
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    position: relative;
+    -webkit-transition: background-color .3s ease;
+    transition: background-color .3s ease;
+    overflow: hidden;
+}
+
+.gotologin
+{
+    width: 300px;
+    height: 35px;
+    font-size: 20px;
+    border-radius: 35px;
+    background-color: royalblue;
+    color: navajowhite;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20%;
+    margin-right: 10%;
+    display:flex;
+    position: relative;
+    -webkit-transition: background-color .3s ease;
+    transition: background-color .3s ease;
+    overflow: hidden;
+}
