@@ -1,21 +1,29 @@
-.div
+.signupmain
 {
-    position: absolute;
-    width: 400px;
-    height: 100px;
-    padding: 20px;
-    top: 17%;
-    left: 50%;
-
-    margin: -70px 0 0 -170px;
+    position: relative;
+    text-align: center;
+    justify-content: center;
+    display:flex;
+    align-items: center;
+    vertical-align: middle;
+    margin-top:10%;
+    height: 100%;
+    width: 100%;
 }
 .span
 {
-    color: red
+    font-size: x-small;
+    color: darkred;
+}
+.error
+{
+    text-align: center;
+    color: darkred;
+    font-size: medium;
 }
 .signup:hover {
-     background-color: orange;
-     color: black;
+     background-color: dodgerblue;
+     color: white;
  }
 .signup
 {
@@ -23,7 +31,7 @@
     height: 35px;
     font-size: 17px;
     border-radius: 35px;
-    background-color: red;
+    background-color: royalblue;
     color: white;
     cursor: pointer;
     position: relative;
