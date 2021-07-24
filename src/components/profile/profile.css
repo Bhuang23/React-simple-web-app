@@ -1,21 +1,46 @@
-.div
+.profilemain
 {
-    position: absolute;
-    width: 400px;
-    height: 100px;
-    padding: 20px;
-    top: 17%;
-    left: 50%;
-
-    margin: -70px 0 0 -170px;
+    position: relative;
+    text-align: center;
+    justify-content: center;
+    display:flex;
+    align-items: center;
+    vertical-align: middle;
+    margin-top:3%;
+    height: 100%;
+    width: 100%;
+}
+.text
+{
+    color:white;
+    font-size: large;
 }
 .span
 {
-    color: red
+    font-size: small;
+    color: red;
 }
+.success {
+    text-align: center;
+    color: greenyellow;
+    font-size: x-large;
+}
+.error
+{
+    text-align: center;
+    color: red;
+    font-size: medium;
+}
+.errorbox
+{
+    justify-content: center;
+    display:flex;
+    align-items: center;
+}
+
 .profile:hover {
-     background-color: orange;
-     color: black;
+     background-color:royalblue;
+     color: white;
  }
 .profile
 {
@@ -23,7 +48,7 @@
     height: 35px;
     font-size: 17px;
     border-radius: 35px;
-    background-color: red;
+    background-color: deepskyblue;
     color: white;
     cursor: pointer;
     position: relative;
