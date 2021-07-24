@@ -1,13 +1,18 @@
 import React, {Component} from "react";
 import Form from 'react-bootstrap/Form'
 import services from '../../services/services'
-import {Redirect} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import "./login.css"
 
 export default class Logincomponent extends Component {
     constructor(props) {
         super(props)
-
+        this.props.login();
+        let username = localStorage.getItem("username")
+        if(username)
+        {
+            this.props.logouthandler();
+        }
         // Setting up functions
         this.onChangeusername = this.onChangeusername.bind(this);
         this.onChangepassword = this.onChangepassword.bind(this);
@@ -64,33 +69,48 @@ export default class Logincomponent extends Component {
             // store the user in localStorage
             localStorage.setItem('username', this.userdata.username)
             this.props.loginhandler();
-            return (<Redirect from="/login-component" to={{pathname: '/shopdetail-component', state: this.state}}/>);
+            return (<Redirect from="/login-component" push to={{pathname: '/shopdetail-component', state: this.state}}/>);
 
         }
         else{
-            return (<span className="span">{this.state.errormessage}</span>);
+            return (<span className="error">{this.state.errormessage}</span>);
         }
     }
     render() {
         return (
-            <div className="div">
+            <div className="loginmain">
                 <Form onSubmit={this.onSubmit} className="formWidth">
                     <Form.Group className="group" controlId="Username">
-                        <Form.Label style={{display: 'flex', justifyContent: 'center'}}>Username</Form.Label>
+                        <Form.Label className="text">Username</Form.Label>
                         <Form.Control type="text" value={this.state.username} onChange={this.onChangeusername}/>
                         {this.state.usernameerrormessage.length > 0 &&
                         <span className="span">{this.state.usernameerrormessage}</span>}
                     </Form.Group>
                     <Form.Group className="group" controlId="Password">
-                        <Form.Label style={{display: 'flex', justifyContent: 'center'}}>Password</Form.Label>
+                        <Form.Label className="text">Password</Form.Label>
                         <Form.Control type="text" value={this.state.password} onChange={this.onChangepassword}/>
                         {this.state.passworderrormessage.length > 0 &&
                         <span className="span">{this.state.passworderrormessage}</span>}
                     </Form.Group>
-                    <button className="login" variant="danger" size="lg" block="block" type="submit"> Login </button>
+                    <button className="login" type="submit"> Login </button>
+                    <div>
+                        {this.error()}
+                        <div>
+                            <Link to={'/resetpassword-component'} style={{textDecoration: 'none'}} className="resetpassword">
+                                <span>Forgot your password?</span>
+                            </Link>
+                        </div>
+                        <br/>
+                        <div>
+                            <span className="newaccount">Don't have an account?</span>
+                        </div>
+                        <div>
+                            <Link to={'/createuser-component'} style={{textDecoration: 'none'}} className="join">
+                                <span>&nbsp;&nbsp;&nbsp;&nbsp;Join now!&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </Link>
+                        </div>
+                    </div>
                 </Form>
-                {this.error()}
-
             </div>
         );
     }
