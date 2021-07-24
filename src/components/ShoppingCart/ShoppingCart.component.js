@@ -4,11 +4,12 @@ import React, {useEffect, useState} from "react";
 import Navbar from "react-bootstrap/Navbar";
 import 'react-dropdown-now/style.css';
 import './ShoppingCart.css'
-import {Dialog, DialogContent, DialogTitle, IconButton} from "@material-ui/core";
+import {Dialog, DialogContent, IconButton} from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Cardform from './Cardform.js';
+import {Redirect} from "react-router-dom";
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 const successMessage = () => {
     return (
@@ -16,7 +17,7 @@ const successMessage = () => {
             <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
             </svg>
-            <div className="title">Payment Successful</div>
+            <div className="title">Payment Successful!</div>
         </div>
     )
 }
@@ -35,6 +36,7 @@ const ShoppingCartComponent = () => {
     };
 
     const handleClose = () => {
+        getData();
         setPaymentCompleted(false);
         setOpen(false);
     };
@@ -67,34 +69,35 @@ const ShoppingCartComponent = () => {
     function error()
     {
         if (message === "Order removed successfully" || message === "Updated order successfully" || message === "Added item to order successfully") {
-            return <div className="success">{message}</div>
+            return <div className="cartsuccess">{message}</div>
         }
         else{
-            return <div className="error">{message}</div>
+            return <div className="carterror">{message}</div>
         }
     }
     async function getData() {
-        let response = await services.getallorders({username: username})
-        let sum = 0;
-        console.log(response[0]);
-        for(let i = 0; i < response.length; i++)
-        {
-            sum+=response[i].item_price*response[i].quantity;
-            console.log(response[i].item_price);
-            console.log(response[i].quantity);
-            console.log(sum)
+        if(username) {
+            let response = await services.getallorders({username: username})
+            let sum = 0;
+            console.log(response[0]);
+            for (let i = 0; i < response.length; i++) {
+                sum += response[i].item_price * response[i].quantity;
+                //console.log(response[i].item_price);
+                //console.log(response[i].quantity);
+                //console.log(sum)
+            }
+            setTotal(sum)
+            setcartlength(response.length)
+            setData(response)
+            setLoadingData(false);
         }
-        setTotal(sum)
-        setcartlength(response.length)
-        setData(response)
-        setLoadingData(false);
     }
     useEffect(() => {
         if (loadingData) {
             // if the result is not ready so you make the axios call
             getData();
         }
-    }, []);
+    }, [getData, loadingData ]);
     const listItems = data.map((item) =>
         <div className="card" key={item.item_id}>
             <div className="card_img">
@@ -137,22 +140,24 @@ const ShoppingCartComponent = () => {
             </div>
         </React.Fragment>)
     }
-    return (
-        <div>
-            <Navbar bg="light" variant="light">
-                <Navbar.Brand > Shopping Cart of {username}!</Navbar.Brand>
-            </Navbar>
-            <div className="shop_detail">
-                {listItems}
-            </div>
-            {error()}
-            <div className="checkout">
-                <button className="buy" onClick={handleClickOpen}>Check out cart</button>
-            </div>
-            <Dialog   fullWidth={ false } maxWidth={"md"} open={open} onClose={handleClose}>
-                <DialogContent>
-                    <div className="col borders-box">
-                        <div className="py-5 text-center">
+    if(username)
+    {
+        return (
+            <div className="shoppingcart">
+                <Navbar>
+                    <Navbar.Brand ><div className="brand">Shopping Cart of {username}!</div></Navbar.Brand>
+                </Navbar>
+                <div className="shop_detail">
+                    {listItems}
+                </div>
+                {error()}
+                <div className="checkout">
+                    <button className="buy" onClick={handleClickOpen}>Check out cart</button>
+                </div>
+                <Dialog   fullWidth={ false } maxWidth={"md"} open={open} onClose={handleClose}>
+                    <DialogContent>
+                        <div className="col borders-box">
+                            <div className="py-5 text-center">
                                 <div className="row s-box">
                                     {paymentCompleted ? successMessage() : <React.Fragment>
                                         <div className="col-md-5 order-md-2 mb-4">
@@ -167,14 +172,18 @@ const ShoppingCartComponent = () => {
                                         </div>
                                     </React.Fragment>}
                                 </div>
+                            </div>
+                            <IconButton className="exit" aria-label="close" onClick={handleClose}>
+                                <CloseIcon />
+                            </IconButton>
                         </div>
-                        <IconButton className="exit" aria-label="close" onClick={handleClose}>
-                            <CloseIcon />
-                        </IconButton>
-                    </div>
-                </DialogContent>
-            </Dialog>
-        </div>
-    )
+                    </DialogContent>
+                </Dialog>
+            </div>
+        )
+    }
+    else {
+        return(<Redirect from="/shopdetail-component" to={{pathname: '/error-component'}}/>)
+    }
 }
 export default ShoppingCartComponent;
