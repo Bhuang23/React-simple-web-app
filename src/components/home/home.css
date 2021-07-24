@@ -1,0 +1,91 @@
+.home
+{
+    background-image: url("https://images.unsplash.com/photo-1552845108-5f775a2ccb9b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Ymx1ZSUyMG1vdW50YWlufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.footer {
+    text-align:center;
+    margin-left: 47%;
+    margin-top: 50%;
+    margin-bottom: 1%;
+    color:white;
+    position: absolute;
+}
+.homeblock
+{
+    position: absolute;
+    margin: 5% 10% 20%;
+    width: 80%;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.homeblocktext
+{
+    justify-content: center;
+    text-align: center;
+}
+.hometitle
+{
+    font-size: xxx-large;
+    font-family: Calibri, serif;
+    color: lightgoldenrodyellow;
+}
+.homedescription
+{
+    font-size: x-large;
+    font-family: Cambria, serif;
+    color: gold;
+}
+
+
+.buttons
+{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 10%;
+    margin-top: 5%;
+}
+.loginbutton:hover {
+    border-radius: 12px;
+    width: 70%;
+    height: 100%;
+    margin-right: 15%;
+    font-size: xx-large;
+    font-family: Calibri, serif;
+    background-color: royalblue;
+    color: white;
+    text-align: center;
+}
+.loginbutton {
+    border-radius: 12px;
+    width: 70%;
+    height: 100%;
+    margin-right: 15%;
+    font-size: xx-large;
+    font-family: Calibri, serif;
+    background-color: royalblue;
+    color: white;
+    text-align: center;
+}
+.signupbutton:hover {
+    border-radius: 12px;
+    width: 70%;
+    height: 100%;
+    font-size: xx-large;
+    font-family: Calibri, serif;
+    color: white;
+}
+.signupbutton {
+    border-radius: 12px;
+    width: 70%;
+    height: 100%;
+    font-size: xx-large;
+    font-family: Calibri, serif;
+    background-color: royalblue;
+    color: white;
+}
