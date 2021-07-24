@@ -28,6 +28,18 @@ export default class services {
             return "Couldn't get user"
         }
     }
+    static async getemail(userdata) {
+        try {
+            let response = await axios.post('http://localhost:4000/users/getemail', userdata)
+                .catch((error) => {
+                    return error.message
+                })
+            console.log(response.data.data)
+            return response.data.data
+        } catch (e){
+            return "Couldn't get user"
+        }
+    }
     static async updateuser(userdata) {
         try {
             let response = await axios.post('http://localhost:4000/users/updateuser', userdata)
@@ -37,7 +49,7 @@ export default class services {
             console.log(response.data.data)
             return response.data.data
         } catch (e){
-            return "Couldn't get user"
+            return "Couldn't update user"
         }
     }
     static async getallorders(userdata) {
@@ -166,7 +178,7 @@ export default class services {
 
     static async createPayment(data, handleResponse) {
         try {
-            const {username, amount, result} = data;
+            const {result} = data;
             if(result.error) {
                 handleResponse(result);
             }
